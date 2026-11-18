@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Atlas Sináptico - Ansiolíticos e Hipnóticos.">
+<meta name="theme-color" content="#173247">
+
+<title>Ansiolíticos e Hipnóticos</title>
+
+<style>
+:root {
+    --bg: #f7f5ef;
+    --paper: #ffffff;
+    --ink: #191c20;
+    --muted: #5d6670;
+    --navy: #173247;
+    --blue: #2c7ea0;
+    --line: rgba(25,28,32,.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(180deg,#fbfaf6,#eeeae0);
+    color: var(--ink);
+    font-family: Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+
+.top {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(251,250,246,.95);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+}
+
+nav {
+    max-width: 1180px;
+    margin: auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.brand {
+    font-weight: 850;
+    letter-spacing: -.02em;
+    font-size: 1.1rem;
+}
+
+.links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 17px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    font-weight: 750;
+    background: #fff;
+}
+
+.btn.primary {
+    background: var(--navy);
+    color: #fff;
+    border-color: var(--navy);
+}
+
+.hero {
+    max-width: 1180px;
+    margin: auto;
+    padding: 72px 20px 48px;
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.tag {
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: .78rem;
+    font-weight: 850;
+    color: var(--blue);
+}
+
+h1 {
+    font-size: clamp(2.6rem,6vw,5rem);
+    line-height: .97;
+    letter-spacing: -.055em;
+    margin: 14px 0 22px;
+}
+
+.lead {
+    font-size: clamp(1.05rem,2vw,1.3rem);
+    line-height: 1.65;
+    color: #43505c;
+    max-width: 700px;
+}
+
+.hero-card {
+    background: #fff;
+    padding: 12px;
+    border-radius: 24px;
+    box-shadow: 0 22px 60px #17324722;
+    animation: heroFloat 6s ease-in-out infinite;
+}
+
+.hero-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+}
+
+.atlas,
+.videos {
+    max-width: 1180px;
+    margin: auto;
+    padding: 38px 20px 82px;
+}
+
+.section-head {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: clamp(2rem,4vw,3.25rem);
+    letter-spacing: -.04em;
+    margin: 8px 0;
+}
+
+.section-head p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.pages {
+    display: grid;
+    gap: 30px;
+}
+
+.slide {
+    margin: 0;
+    background: var(--paper);
+    padding: 10px;
+    border-radius: 22px;
+    box-shadow: 0 18px 55px #1732471f;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .7s ease,
+                transform .7s ease,
+                box-shadow .4s ease;
+}
+
+.slide.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide:hover {
+    box-shadow: 0 28px 70px #17324730;
+}
+
+.slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+}
+
+/* SEÇÃO DOS CINCO VÍDEOS */
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.video-card {
+    min-width: 0;
+    background: #fff;
+    padding: 10px;
+    border-radius: 24px;
+    box-shadow: 0 20px 58px #17324720;
+    transition: transform .3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-shell {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #000;
+}
+
+.video-shell iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+.video-card h3 {
+    margin: 17px 10px 7px;
+    font-size: 1.25rem;
+}
+
+.video-card p {
+    margin: 0 10px 14px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.video-link {
+    display: inline-block;
+    margin: 0 10px 12px;
+    color: var(--blue);
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+.notice {
+    max-width: 1140px;
+    margin: 0 auto 80px;
+    padding: 20px 24px;
+    border: 1px solid #d8cba3;
+    background: #fffaf0;
+    border-radius: 18px;
+    line-height: 1.55;
+    color: #594a1f;
+}
+
+footer {
+    background: var(--navy);
+    color: #dce7ed;
+    padding: 34px 20px;
+    text-align: center;
+    line-height: 1.8;
+}
+
+@keyframes heroFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+@media(max-width:800px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 48px;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .links .secondary {
+        display: none;
+    }
+
+    .atlas,
+    .videos {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .slide {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .hero-card {
+        animation: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+
+<header class="top">
+<nav>
+
+    <a class="brand" href="#inicio">
+        Ansiolíticos e Hipnóticos
+    </a>
+
+    <div class="links">
+
+        <a class="btn secondary" href="#conteudo">
+            Conteúdo
+        </a>
+
+        <a class="btn primary" href="#videos">
+            Vídeos
+        </a>
+
+    </div>
+
+</nav>
+</header>
+
+<main>
+
+<!-- APRESENTAÇÃO -->
+
+<section class="hero" id="inicio">
+
+    <div>
+
+        <div class="tag">
+            Farmacologia • Neurobiologia • Psicoeducação
+        </div>
+
+        <h1>
+            O Atlas Sináptico
+        </h1>
+
+        <p class="lead">
+            Arquitetura e ação dos psicofármacos em um guia
+            visual integrado, com conteúdo didático e
+            apresentação clara.
+        </p>
+
+        <div class="links">
+
+            <a class="btn primary" href="#conteudo">
+                Explorar slides
+            </a>
+
+            <a class="btn" href="#videos">
+                Assistir aos vídeos
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-card">
+
+        <img
+            src="assets/slide-1.png"
+            alt="Capa do Atlas Sináptico"
+        >
+
+    </div>
+
+</section>
+
+<!-- CONTEÚDO DO ATLAS -->
+
+<section class="atlas" id="conteudo">
+
+    <div class="section-head">
+
+        <div class="tag">
+            Material de estudo
+        </div>
+
+        <h2>
+            Conteúdo do Atlas
+        </h2>
+
+        <p>
+            Explore todos os slides do Atlas Sináptico.
+        </p>
+
+    </div>
+
+    <div class="pages">
+
+        <figure class="slide reveal">
+            <img src="assets/slide-1.png" alt="Slide 1" loading="lazy">
+        </figure>
+
+        <figure class="slide reveal">
+            <img src="assets/slide-2.png" alt="Slide 2" loading="lazy">
+        </figure>
+
+        <figure class="slide reveal">
+            <img src="assets/slide-3.png" alt="Slide 3" loading="lazy">
+        </figure>
+
+        <figure class="slide reveal">
+            <img src="assets/slide-4.png" alt="Slide 4" loading="lazy">
+        </figure>
+
+        <figure class="slide reveal">
+            <img src="assets/slide-5.png" alt="Slide 5" loading="lazy">
+        </figure>
+
+        <figure class="slide reveal">
+            <img src="assets/slide-6.png" alt="Slide 6" loading="lazy">
+        </figure>
+
+        <figure class="slide reveal">
+            <img src="assets/slide-7.png" alt="Slide 7" loading="lazy">
+        </figure>
+
+        <figure class="slide reveal">
+            <img src="assets/slide-8.png" alt="Slide 8" loading="lazy">
+        </figure>
+
+        <figure class="slide reveal">
+            <img src="assets/slide-9.png" alt="Slide 9" loading="lazy">
+        </figure>
+
+        <figure class="slide reveal">
+            <img src="assets/slide-10.png" alt="Slide 10" loading="lazy">
+        </figure>
+
+        <figure class="slide reveal">
+            <img src="assets/slide-11.png" alt="Slide 11" loading="lazy">
+        </figure>
+
+    </div>
+
+</section>
+
+<!-- CINCO VÍDEOS DO YOUTUBE -->
+
+<section class="videos" id="videos">
+
+    <div class="section-head">
+
+        <div class="tag">
+            Conteúdo audiovisual
+        </div>
+
+        <h2>
+            Assista aos vídeos
+        </h2>
+
+        <p>
+            Aprofunde seus conhecimentos com nossas aulas
+            e apresentações.
+        </p>
+
+    </div>
+
+    <div class="video-grid">
+
+        <!-- VÍDEO 1 -->
+
+        <article class="video-card">
+
+            <div class="video-shell">
+
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/jxLYoaUdosQ"
+                    title="Vídeo 1 - Ansiolíticos e Hipnóticos"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+            <h3>Vídeo 1</h3>
+
+            <p>Primeiro conteúdo audiovisual.</p>
+
+            <a class="video-link"
+               href="https://youtu.be/jxLYoaUdosQ"
+               target="_blank"
+               rel="noopener noreferrer">
+                Assistir no YouTube ↗
+            </a>
+
+        </article>
+
+        <!-- VÍDEO 2 -->
+
+        <article class="video-card">
+
+            <div class="video-shell">
+
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/hLC_8l1DTuE"
+                    title="Vídeo 2 - Ansiolíticos e Hipnóticos"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+            <h3>Vídeo 2</h3>
+
+            <p>Segundo conteúdo audiovisual.</p>
+
+            <a class="video-link"
+               href="https://youtube.com/shorts/hLC_8l1DTuE"
+               target="_blank"
+               rel="noopener noreferrer">
+                Assistir no YouTube ↗
+            </a>
+
+        </article>
+
+        <!-- VÍDEO 3 -->
+
+        <article class="video-card">
+
+            <div class="video-shell">
+
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/y4ZrT-0IrzI"
+                    title="Vídeo 3 - Ansiolíticos e Hipnóticos"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+            <h3>Vídeo 3</h3>
+
+            <p>Terceiro conteúdo audiovisual.</p>
+
+            <a class="video-link"
+               href="https://youtube.com/shorts/y4ZrT-0IrzI"
+               target="_blank"
+               rel="noopener noreferrer">
+                Assistir no YouTube ↗
+            </a>
+
+        </article>
+
+        <!-- VÍDEO 4 -->
+
+        <article class="video-card">
+
+            <div class="video-shell">
+
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/8skuB9jDTTQ"
+                    title="Vídeo 4 - Ansiolíticos e Hipnóticos"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+            <h3>Vídeo 4</h3>
+
+            <p>Quarto conteúdo audiovisual.</p>
+
+            <a class="video-link"
+               href="https://youtube.com/shorts/8skuB9jDTTQ"
+               target="_blank"
+               rel="noopener noreferrer">
+                Assistir no YouTube ↗
+            </a>
+
+        </article>
+
+        <!-- VÍDEO 5 -->
+
+        <article class="video-card">
+
+            <div class="video-shell">
+
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/IrdC_Jaa_lU"
+                    title="Vídeo 5 - Ansiolíticos e Hipnóticos"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+            <h3>Vídeo 5</h3>
+
+            <p>Quinto conteúdo audiovisual.</p>
+
+            <a class="video-link"
+               href="https://youtube.com/shorts/IrdC_Jaa_lU"
+               target="_blank"
+               rel="noopener noreferrer">
+                Assistir no YouTube ↗
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+<!-- AVISO -->
+
+<div class="notice">
+
+    <strong>Aviso importante:</strong>
+
+    Conteúdo educacional. As informações não substituem
+    avaliação, prescrição ou acompanhamento por
+    profissionais habilitados.
+
+</div>
+
+</main>
+
+<!-- RODAPÉ -->
+
+<footer>
+
+    <strong>Atlas Sináptico</strong>
+
+    <br>
+
+    Ansiolíticos e Hipnóticos.
+
+</footer>
+
+<!-- ANIMAÇÕES -->
+
+<script>
+
+(function() {
+
+    const slides = document.querySelectorAll('.reveal');
+
+    if (!('IntersectionObserver' in window)) {
+
+        slides.forEach(function(slide) {
+            slide.classList.add('visible');
+        });
+
+        return;
+    }
+
+    const observer = new IntersectionObserver(function(entries) {
+
+        entries.forEach(function(entry) {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add('visible');
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -5% 0px'
+    });
+
+    slides.forEach(function(slide, index) {
+
+        slide.style.transitionDelay =
+            (index % 3) * 70 + 'ms';
+
+        observer.observe(slide);
+
+    });
+
+})();
+
+</script>
+
+</body>
+</html>
